@@ -1,0 +1,13 @@
+# Déploiement Netlify — https://app.netlify.com
+[build]
+  command = "npm run build"
+  publish = "dist/raki-peinture"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Toutes les URL renvoient vers index.html (appli une page)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

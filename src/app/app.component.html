@@ -1,0 +1,338 @@
+<!-- ================= Fond animé ================= -->
+<div class="bg" #bg aria-hidden="true">
+  <span class="blob blob--red"></span>
+  <span class="blob blob--blue"></span>
+  <span class="blob blob--green"></span>
+  <span class="blob blob--gold"></span>
+  <span class="blob blob--red2"></span>
+  <span class="bg-grain"></span>
+  <span class="bg-veil"></span>
+</div>
+
+<!-- filtre SVG : bord "peinture" déchiré -->
+<svg class="svg-defs" aria-hidden="true">
+  <filter id="rough">
+    <feTurbulence type="fractalNoise" baseFrequency="0.014 0.09" numOctaves="3" seed="7" result="n" />
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="12" />
+  </filter>
+</svg>
+
+<div class="page" #host>
+  <!-- ================= En-tête ================= -->
+  <header class="head" [class.head--scrolled]="scrolled">
+    <a class="brand" href="#accueil" (click)="toggleMenu(false)" aria-label="Raki Schilderwerken">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="38" height="38" rx="9" stroke="rgba(216,164,65,.4)" />
+        <path d="M8 22 20 10l12 12v9a1.5 1.5 0 0 1-1.5 1.5h-21A1.5 1.5 0 0 1 8 31z" stroke="#d8a441" stroke-width="2" stroke-linejoin="round" />
+        <path d="M17 33v-7h6v7" stroke="#d8a441" stroke-width="2" stroke-linejoin="round" />
+        <path d="M26 8c3 1 5 3 6 6" stroke="#e2402f" stroke-width="2.4" stroke-linecap="round" />
+      </svg>
+      <span><b>RAKI</b><i>{{ t.brand }}</i></span>
+    </a>
+
+    <nav class="nav" [class.nav--open]="menuOpen">
+      <a href="#services" (click)="toggleMenu(false)">{{ t.nav.services }}</a>
+      <a href="#methode" (click)="toggleMenu(false)">{{ t.nav.process }}</a>
+      <a href="#ambiances" (click)="toggleMenu(false)">{{ t.nav.ambiances }}</a>
+      <a href="#apropos" (click)="toggleMenu(false)">{{ t.nav.about }}</a>
+      <a href="#questions" (click)="toggleMenu(false)">{{ t.nav.faq }}</a>
+      <a class="nav__phone" [href]="phoneHref">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z" /></svg>
+        {{ t.actions.call }}
+      </a>
+    </nav>
+
+    <div class="head__right">
+      <div class="lang" role="group" aria-label="Taal / Langue / Language">
+        <button *ngFor="let l of langs" type="button"
+                [attr.aria-pressed]="lang === l" (click)="setLang(l)">{{ l | uppercase }}</button>
+      </div>
+      <a class="pill pill--phone" [href]="phoneHref">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z" /></svg>
+        <span>{{ t.actions.call }}</span>
+      </a>
+      <button class="burger" [class.burger--open]="menuOpen" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen" [attr.aria-label]="menuOpen ? 'Fermer' : 'Menu'">
+        <svg class="burger__bars" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        <svg class="burger__x" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+  </header>
+  <div class="nav-backdrop" [class.show]="menuOpen" (click)="toggleMenu(false)"></div>
+
+  <main>
+    <!-- ================= Hero ================= -->
+    <section class="hero" id="accueil">
+      <div class="wrap hero__inner">
+        <p class="hero__tags reveal">
+          <span *ngFor="let tag of t.hero.tags; let last = last">
+            {{ tag }}<i *ngIf="!last" class="dot"></i>
+          </span>
+        </p>
+        <h1 class="hero__title reveal">
+          {{ t.hero.titleLead }}
+          <span class="paint">{{ t.hero.titleAccent }}</span>.
+        </h1>
+        <p class="hero__lead reveal">{{ t.hero.lead }}</p>
+        <div class="hero__actions reveal">
+          <a class="pill pill--solid" href="#devis">{{ t.actions.quote }}</a>
+          <a class="pill pill--ghost" [href]="phoneHref">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z" /></svg>
+            {{ t.actions.call }}
+          </a>
+        </div>
+      </div>
+      <span class="hero__scroll" aria-hidden="true"><i></i>{{ t.hero.scroll }}</span>
+    </section>
+
+    <!-- ================= Devis express ================= -->
+    <section class="quote" id="devis">
+      <div class="wrap">
+        <div class="quote__card reveal">
+          <div class="quote__intro">
+            <span class="label">{{ t.contact.label }}</span>
+            <h2>{{ t.quote.title }}</h2>
+            <p>{{ t.quote.text }}</p>
+            <div class="quote__direct">
+              <a [href]="phoneHref">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z" /></svg>
+                {{ t.actions.call }}
+              </a>
+              <a [href]="whatsappHref" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3z" /><path d="M8.5 8.8c-.2 1.2.3 2.7 1.6 4s2.8 1.8 4 1.6c.5-.1.8-.5.9-1l.2-.9-2-.9-.8.9c-.7-.3-1.4-.8-1.9-1.4l.8-.9-.9-2-.9.2c-.5.1-.9.4-1 .9z" /></svg>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <form class="quote__form" (ngSubmit)="submitQuote()" novalidate>
+            <div class="field">
+              <label for="q-name">{{ t.quote.name }}</label>
+              <input id="q-name" name="name" type="text" autocomplete="name" required
+                     [(ngModel)]="form.name" [placeholder]="t.quote.namePh" />
+            </div>
+            <div class="field">
+              <label for="q-phone">{{ t.quote.phone }}</label>
+              <input id="q-phone" name="phone" type="tel" autocomplete="tel"
+                     [(ngModel)]="form.phone" [placeholder]="t.quote.phonePh" />
+            </div>
+            <div class="field">
+              <label for="q-service">{{ t.quote.service }}</label>
+              <select id="q-service" name="service" [(ngModel)]="form.service">
+                <option value="" disabled selected>—</option>
+                <option *ngFor="let opt of t.quote.serviceOptions" [value]="opt">{{ opt }}</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="q-msg">{{ t.quote.message }}</label>
+              <textarea id="q-msg" name="message" required rows="3"
+                        [(ngModel)]="form.message" [placeholder]="t.quote.messagePh"></textarea>
+            </div>
+            <button class="pill pill--solid" type="submit">{{ t.actions.send }}</button>
+            <p class="quote__note">{{ t.quote.note }}</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Services ================= -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <span class="label">{{ t.services.label }}</span>
+          <h2>{{ t.services.title }}</h2>
+          <p>{{ t.services.text }}</p>
+        </header>
+        <div class="cards">
+          <article class="card reveal" *ngFor="let s of services; let i = index" [style.--accent]="s.color">
+            <span class="card__glow"></span>
+            <span class="card__index">{{ i + 1 < 10 ? '0' : '' }}{{ i + 1 }}</span>
+            <svg class="card__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path [attr.d]="s.icon" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <h3>{{ t.services.items[i].title }}</h3>
+            <p>{{ t.services.items[i].text }}</p>
+            <span class="card__tag">{{ t.services.items[i].tag }}</span>
+            <a class="card__link" href="#devis">
+              {{ t.services.more }}
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Méthode ================= -->
+    <section class="section" id="methode">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <span class="label">{{ t.process.label }}</span>
+          <h2>{{ t.process.title }}</h2>
+          <p>{{ t.process.text }}</p>
+        </header>
+        <ol class="steps">
+          <li class="step reveal" *ngFor="let step of steps; let i = index">
+            <span class="step__num">{{ i + 1 }}</span>
+            <svg class="step__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path [attr.d]="step.icon" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <h3>{{ t.process.items[i].title }}</h3>
+            <p>{{ t.process.items[i].text }}</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= Ambiances ================= -->
+    <section class="section" id="ambiances">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <span class="label">{{ t.ambiances.label }}</span>
+          <h2>{{ t.ambiances.title }}</h2>
+          <p>{{ t.ambiances.text }}</p>
+        </header>
+        <div class="swatches">
+          <figure class="swatch reveal" *ngFor="let sw of t.ambiances.items; let i = index">
+            <span class="swatch__chip" [style.background]="swatchColors[i]"></span>
+            <figcaption>
+              <b>{{ sw.name }}</b>
+              <span>{{ sw.use }}</span>
+            </figcaption>
+          </figure>
+        </div>
+        <p class="ambiances__follow reveal">
+          {{ t.ambiances.followLabel }}
+          <a [href]="instagramHref" target="_blank" rel="noopener">{{ instagramHandle }}</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= À propos ================= -->
+    <section class="section" id="apropos">
+      <div class="wrap about">
+        <div class="about__text reveal">
+          <span class="label">{{ t.about.label }}</span>
+          <p class="about__name">Raki Chammari</p>
+          <p class="about__role">{{ t.about.role }}</p>
+          <p>{{ t.about.p1 }}</p>
+          <p>{{ t.about.p2 }}</p>
+        </div>
+        <ul class="about__facts reveal">
+          <li *ngFor="let fact of t.about.facts">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L10 17l-5-5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            {{ fact }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="questions">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <span class="label">{{ t.faq.label }}</span>
+          <h2>{{ t.faq.title }}</h2>
+        </header>
+        <div class="faq reveal">
+          <div class="faq__item" *ngFor="let item of t.faq.items; let i = index" [class.open]="openFaq === i">
+            <button type="button" class="faq__q" (click)="toggleFaq(i)" [attr.aria-expanded]="openFaq === i">
+              <span>{{ item.q }}</span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-width="1.8" stroke-linecap="round" /></svg>
+            </button>
+            <div class="faq__a"><p>{{ item.a }}</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Bandeau CTA ================= -->
+    <section class="band reveal">
+      <div class="wrap band__inner">
+        <div>
+          <h2>{{ t.band.title }}</h2>
+          <p>{{ t.band.text }}</p>
+        </div>
+        <div class="band__actions">
+          <a class="pill pill--solid" [href]="phoneHref">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z" /></svg>
+            {{ t.actions.call }}
+          </a>
+          <a class="pill pill--ghost" href="#devis">{{ t.actions.quote }}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Contact ================= -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <header class="sec-head reveal">
+          <span class="label">{{ t.contact.label }}</span>
+          <h2>{{ t.contact.title }}</h2>
+          <p>{{ t.contact.text }}</p>
+        </header>
+        <div class="contact">
+          <div class="contact__links reveal">
+            <a [href]="phoneHref">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z" /></svg>
+              <span><b>{{ t.actions.call }}</b><i>{{ t.contact.callSub }}</i></span>
+            </a>
+            <a [href]="whatsappHref" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3z" /><path d="M8.5 8.8c-.2 1.2.3 2.7 1.6 4s2.8 1.8 4 1.6c.5-.1.8-.5.9-1l.2-.9-2-.9-.8.9c-.7-.3-1.4-.8-1.9-1.4l.8-.9-.9-2-.9.2c-.5.1-.9.4-1 .9z" /></svg>
+              <span><b>WhatsApp</b><i>{{ t.contact.whatsappSub }}</i></span>
+            </a>
+            <a [href]="emailHref">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+              <span><b>{{ email }}</b><i>{{ t.contact.emailSub }}</i></span>
+            </a>
+            <a [href]="instagramHref" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" /></svg>
+              <span><b>{{ instagramHandle }}</b><i>{{ t.contact.instagramSub }}</i></span>
+            </a>
+          </div>
+          <ul class="contact__meta reveal">
+            <li>
+              <span class="label">{{ t.contact.zoneLabel }}</span>
+              {{ t.contact.zone }}
+            </li>
+            <li>
+              <span class="label">{{ t.contact.hoursLabel }}</span>
+              {{ t.contact.hours }}
+            </li>
+            <li>
+              <span class="label">Instagram</span>
+              <a [href]="instagramHref" target="_blank" rel="noopener">{{ instagramHandle }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= Pied de page ================= -->
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <div class="foot__brand">
+        <b>RAKI SCHILDERWERKEN</b>
+        <p>{{ t.footer.tagline }}</p>
+      </div>
+      <nav class="foot__col">
+        <h3>{{ t.footer.navLabel }}</h3>
+        <a href="#services">{{ t.nav.services }}</a>
+        <a href="#methode">{{ t.nav.process }}</a>
+        <a href="#ambiances">{{ t.nav.ambiances }}</a>
+        <a href="#apropos">{{ t.nav.about }}</a>
+        <a href="#questions">{{ t.nav.faq }}</a>
+      </nav>
+      <div class="foot__col">
+        <h3>{{ t.footer.contactLabel }}</h3>
+        <a [href]="phoneHref">{{ t.actions.call }}</a>
+        <a [href]="emailHref">{{ email }}</a>
+        <a [href]="instagramHref" target="_blank" rel="noopener">{{ instagramHandle }}</a>
+        <p>Antwerpen, België</p>
+      </div>
+    </div>
+    <div class="wrap foot__base">
+      <span>© {{ year }} Raki Schilderwerken</span>
+      <span>{{ t.footer.rights }}</span>
+    </div>
+  </footer>
+</div>
