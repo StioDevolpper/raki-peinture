@@ -1,13 +1,13 @@
 /**
- * Contenu multilingue du site (NL / FR / EN).
+ * Contenu multilingue du site (NL / EN).
  * Un seul endroit à modifier pour changer les textes.
  * Langue par défaut : NL (voir app.component.ts).
  */
 
-export type Lang = 'nl' | 'fr' | 'en';
+export type Lang = 'nl' | 'en';
 
 /** Ordre d'affichage du sélecteur de langue. */
-export const LANGS: Lang[] = ['nl', 'fr', 'en'];
+export const LANGS: Lang[] = ['nl', 'en'];
 
 export interface ServiceCopy {
   title: string;
@@ -91,11 +91,11 @@ export interface Dict {
 export const CONTENT: Record<Lang, Dict> = {
   nl: {
     meta: {
-      title: 'Raki-Peinture — Schilder in Antwerpen | Raki Schilderwerken',
+      title: 'Raki Schilderwerken — Schilder in Antwerpen',
       description:
         'Raki Schilderwerken — professionele schilder in Antwerpen. Binnen- en buitenschilderwerk, gyproc, plamuur en renovatie. Gratis offerte: 0492 65 31 96.',
     },
-    brand: 'Schilderwerken · Antwerpen',
+    brand: 'Raki Schilderwerken',
     nav: {
       services: 'Diensten',
       process: 'Werkwijze',
@@ -106,7 +106,7 @@ export const CONTENT: Record<Lang, Dict> = {
     },
     actions: { quote: 'Vraag een offerte', call: '0492 65 31 96', send: 'Aanvraag versturen' },
     hero: {
-      tags: ['Antwerpen & omgeving', 'Binnen & buiten', 'NL / FR / EN'],
+      tags: ['Antwerpen & omgeving', 'Binnen & buiten', 'NL / EN'],
       titleLead: 'Uw schilderwerk in',
       titleAccent: 'vertrouwde handen',
       lead:
@@ -211,12 +211,12 @@ export const CONTENT: Record<Lang, Dict> = {
       p1:
         'Gevestigd in Antwerpen voer ik uw schilder- en renovatiewerken uit met oog voor detail. Elke werf wordt zorgvuldig voorbereid, netjes uitgevoerd en opgeleverd binnen de afgesproken termijn.',
       p2:
-        'Duidelijke offerte, direct contact, in het Nederlands, het Frans of het Engels. U spreekt met de persoon die zelf het penseel vasthoudt.',
+        'Duidelijke offerte, direct contact, in het Nederlands of het Engels. U spreekt met de persoon die zelf het penseel vasthoudt.',
       facts: [
         'Antwerpen & omliggende gemeenten',
         'Binnen & buiten, particulieren en handelspanden',
         'Verzorgd werk, nette werf',
-        'Service in het Nederlands, Frans en Engels',
+        'Service in het Nederlands en het Engels',
       ],
     },
     faq: {
@@ -228,8 +228,8 @@ export const CONTENT: Record<Lang, Dict> = {
           a: 'Ja. Ik kom ter plaatse, bekijk de werken en stuur u een gedetailleerde offerte, zonder verplichting.',
         },
         {
-          q: 'Werkt u in het Nederlands, Frans en Engels?',
-          a: 'Ja, alle drie. U kiest de taal die u past, zowel mondeling als op de offerte.',
+          q: 'Werkt u in het Nederlands en het Engels?',
+          a: 'Ja, allebei. U kiest de taal die u past, zowel mondeling als op de offerte.',
         },
         {
           q: 'Beschermt u de meubels en vloeren?',
@@ -271,197 +271,13 @@ export const CONTENT: Record<Lang, Dict> = {
     },
   },
 
-  fr: {
-    meta: {
-      title: 'Raki-Peinture — Peintre à Anvers | Raki Schilderwerken',
-      description:
-        'Raki Schilderwerken — peintre professionnel à Anvers. Peinture intérieure et extérieure, gyproc, enduits et rénovation. Devis gratuit : 0492 65 31 96.',
-    },
-    brand: 'Peinture · Anvers',
-    nav: {
-      services: 'Services',
-      process: 'Méthode',
-      ambiances: 'Ambiances',
-      about: 'À propos',
-      faq: 'Questions',
-      contact: 'Contact',
-    },
-    actions: { quote: 'Demander un devis', call: '0492 65 31 96', send: 'Envoyer la demande' },
-    hero: {
-      tags: ['Anvers & environs', 'Intérieur & extérieur', 'NL / FR / EN'],
-      titleLead: 'Votre peinture entre de',
-      titleAccent: 'bonnes mains',
-      lead:
-        "Peintre professionnel à Anvers. Peinture intérieure et extérieure, gyproc, enduits et rénovation — préparation minutieuse, finition soignée, délais respectés.",
-      scroll: 'Faire défiler',
-    },
-    quote: {
-      title: 'Devis gratuit et sans engagement',
-      text:
-        'Décrivez votre chantier en quelques mots : nous revenons vers vous rapidement avec une estimation claire.',
-      name: 'Nom',
-      namePh: 'Votre nom',
-      phone: 'Téléphone',
-      phonePh: 'Pour vous rappeler',
-      service: 'Type de travaux',
-      serviceOptions: [
-        'Peinture intérieure',
-        'Peinture extérieure',
-        'Gyproc & cloisons',
-        'Enduits & ratissage',
-        'Rénovation complète',
-        'Autre / je ne sais pas',
-      ],
-      message: 'Votre projet',
-      messagePh: 'Surface approximative, adresse du chantier, délai souhaité…',
-      note:
-        "L'envoi ouvre votre logiciel de messagerie avec le récapitulatif prérempli vers schilderwerkenraki@gmail.com.",
-      mailSubject: 'Demande de devis — ',
-    },
-    services: {
-      label: 'Ce que je réalise',
-      title: 'Quatre métiers, un seul interlocuteur',
-      text:
-        'De la première couche au dernier coup de pinceau, chaque chantier est suivi de bout en bout.',
-      more: 'Demander un devis',
-      items: [
-        {
-          title: 'Peinture intérieure & extérieure',
-          text:
-            'Murs, plafonds, boiseries, façades et menuiseries extérieures. Préparation complète des supports et peintures adaptées à chaque pièce et à chaque exposition.',
-          tag: 'Binnen & buiten',
-        },
-        {
-          title: 'Gyproc & cloisons',
-          text:
-            'Pose de plaques de plâtre, faux plafonds et cloisons de séparation pour réaménager et isoler vos espaces.',
-          tag: 'Gyproc',
-        },
-        {
-          title: 'Enduits & ratissage',
-          text:
-            'Ratissage, enduits de lissage et rebouchage des fissures pour des murs parfaitement plans, prêts à peindre.',
-          tag: 'Plamuurwerken',
-        },
-        {
-          title: 'Rénovation',
-          text:
-            "Rafraîchissement complet d'un appartement, d'une maison ou d'un commerce : de la dépose et la préparation jusqu'à la finition.",
-          tag: 'Renovatie',
-        },
-      ],
-    },
-    process: {
-      label: 'Comment ça se passe',
-      title: 'Une méthode claire, sans mauvaise surprise',
-      text: 'Chaque étape est annoncée et exécutée proprement, du premier contact à la remise des clés.',
-      items: [
-        {
-          title: 'Devis gratuit',
-          text: 'Visite sur place, conseils couleurs et devis détaillé, sans engagement.',
-        },
-        {
-          title: 'Préparation',
-          text: 'Protection du mobilier et des sols, ponçage, dégraissage et traitement des fissures.',
-        },
-        {
-          title: 'Mise en peinture',
-          text: "Couches d'apprêt et de finition appliquées proprement, temps de séchage respectés.",
-        },
-        {
-          title: 'Finitions & livraison',
-          text: 'Retouches, nettoyage complet du chantier et contrôle final réalisé avec vous.',
-        },
-      ],
-    },
-    ambiances: {
-      label: 'Inspiration',
-      title: 'Des ambiances, pas seulement des murs',
-      text:
-        "Quelques teintes souvent choisies pour l'intérieur comme pour la façade. Le conseil couleur fait partie du devis.",
-      followLabel: 'Chantiers en cours et réalisations terminées :',
-      items: [
-        { name: 'Blanc chaud', use: 'Séjour · plafonds' },
-        { name: 'Gris argile', use: 'Chambre · couloir' },
-        { name: 'Vert sauge', use: 'Cuisine · bureau' },
-        { name: 'Bleu nuit', use: 'Menuiseries · pièce forte' },
-        { name: 'Terracotta', use: 'Entrée · accents' },
-        { name: 'Anthracite', use: 'Façade · portes' },
-      ],
-    },
-    about: {
-      label: 'À propos',
-      role: 'Raki Schilderwerken · Antwerpen',
-      p1:
-        "Basé à Anvers, je réalise vos travaux de peinture et de rénovation avec le souci du détail. Chaque chantier est préparé avec soin, exécuté proprement et livré dans les délais convenus.",
-      p2:
-        "Devis clair, communication directe, en néerlandais, en français ou en anglais. Vous parlez à la personne qui tient le pinceau.",
-      facts: [
-        'Anvers & communes environnantes',
-        'Intérieur & extérieur, particuliers et commerces',
-        'Travail soigné, chantier propre',
-        'Service en néerlandais, français et anglais',
-      ],
-    },
-    faq: {
-      label: 'Questions fréquentes',
-      title: 'Ce que les clients demandent souvent',
-      items: [
-        {
-          q: 'Le devis est-il vraiment gratuit ?',
-          a: "Oui. Je me déplace sur place, j'évalue les travaux et vous envoie un devis détaillé, sans engagement de votre part.",
-        },
-        {
-          q: 'Travaillez-vous en néerlandais, français et anglais ?',
-          a: 'Oui, les trois. Vous choisissez la langue qui vous convient, à l’oral comme sur le devis.',
-        },
-        {
-          q: 'Protégez-vous les meubles et les sols ?',
-          a: "Systématiquement. Le mobilier est bâché, les sols sont protégés et le chantier est nettoyé à la fin.",
-        },
-        {
-          q: 'Combien de temps dure un chantier ?',
-          a: "Cela dépend de la surface et du type de travaux. La durée est indiquée dans le devis et respectée sauf imprévu signalé à l’avance.",
-        },
-        {
-          q: 'Dans quelles communes intervenez-vous ?',
-          a: 'Anvers et les communes environnantes (Berchem, Borgerhout, Deurne, Merksem, Mortsel, Edegem…). Pour une adresse plus éloignée, demandez.',
-        },
-      ],
-    },
-    band: {
-      title: 'Donnons vie à votre projet',
-      text: "Un mur à rafraîchir, un appartement à rénover ? Parlons-en dès aujourd'hui.",
-    },
-    contact: {
-      label: 'Contact',
-      title: 'Parlons de votre projet',
-      text: 'Le plus simple : un appel ou un message WhatsApp. Réponse rapide, devis gratuit.',
-      callSub: 'Appeler directement',
-      whatsappSub: 'Envoyer un message',
-      emailSub: 'Écrire un e-mail',
-      instagramSub: 'Voir les réalisations',
-      zoneLabel: "Zone d'intervention",
-      zone: 'Anvers (Antwerpen) & communes environnantes',
-      hoursLabel: 'Disponibilité',
-      hours: 'Lun – Sam, 8h – 18h',
-    },
-    footer: {
-      tagline:
-        'Schilderwerken binnen & buiten — peinture, gyproc, enduits et rénovation à Anvers.',
-      navLabel: 'Navigation',
-      contactLabel: 'Contact',
-      rights: 'Tous droits réservés',
-    },
-  },
-
   en: {
     meta: {
-      title: 'Raki-Peinture — Painter in Antwerp | Raki Schilderwerken',
+      title: 'Raki Schilderwerken — Painter in Antwerp',
       description:
         'Raki Schilderwerken — professional painter in Antwerp. Interior and exterior painting, plasterboard, filling and renovation. Free quote: 0492 65 31 96.',
     },
-    brand: 'Painting · Antwerp',
+    brand: 'Raki Schilderwerken',
     nav: {
       services: 'Services',
       process: 'Method',
@@ -472,7 +288,7 @@ export const CONTENT: Record<Lang, Dict> = {
     },
     actions: { quote: 'Request a quote', call: '0492 65 31 96', send: 'Send request' },
     hero: {
-      tags: ['Antwerp & surroundings', 'Interior & exterior', 'NL / FR / EN'],
+      tags: ['Antwerp & surroundings', 'Interior & exterior', 'NL / EN'],
       titleLead: 'Your paintwork in',
       titleAccent: 'trusted hands',
       lead:
@@ -578,12 +394,12 @@ export const CONTENT: Record<Lang, Dict> = {
       p1:
         'Based in Antwerp, I carry out your painting and renovation work with an eye for detail. Every project is carefully prepared, done cleanly and delivered within the agreed time.',
       p2:
-        'Clear quote, direct contact, in Dutch, French or English. You talk to the person holding the brush.',
+        'Clear quote, direct contact, in Dutch or English. You talk to the person holding the brush.',
       facts: [
         'Antwerp & surrounding municipalities',
         'Interior & exterior, homes and businesses',
         'Careful work, tidy site',
-        'Service in Dutch, French and English',
+        'Service in Dutch and English',
       ],
     },
     faq: {
@@ -595,8 +411,8 @@ export const CONTENT: Record<Lang, Dict> = {
           a: 'Yes. I come on site, assess the work and send you a detailed quote, with no obligation on your part.',
         },
         {
-          q: 'Do you work in Dutch, French and English?',
-          a: 'Yes, all three. You choose the language that suits you, both in person and on the quote.',
+          q: 'Do you work in Dutch and English?',
+          a: 'Yes, both. You choose the language that suits you, both in person and on the quote.',
         },
         {
           q: 'Do you protect furniture and floors?',

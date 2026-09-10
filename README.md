@@ -1,7 +1,7 @@
-# Raki-Peinture — Angular 15
+# Raki Schilderwerken — Angular 15
 
 Site vitrine une page pour **Raki Schilderwerken** (peinture intérieure /
-extérieure, gyproc, enduits, rénovation — Anvers), **trilingue NL / FR / EN**
+extérieure, gyproc, enduits, rénovation — Anvers), **bilingue NL / EN**
 (néerlandais par défaut).
 
 Projet volontairement minimal : **un seul composant** (`AppComponent`,
@@ -40,17 +40,17 @@ raki-peinture/
     └── app/
         ├── app.component.ts     logique : langue, menu, FAQ, formulaire, reveal, parallaxe
         ├── app.component.html    le gabarit complet
-        └── content.ts            TOUS les textes NL / FR / EN (à modifier ici)
+        └── content.ts            TOUS les textes NL / EN (à modifier ici)
 ```
 
 ## Modifier le contenu
 
 Tout le texte est dans **`src/app/content.ts`**, objet `CONTENT` avec une clé
-`nl`, `fr` et `en` de structure identique. Modifiez les trois.
+`nl` et une clé `en` de structure identique. Modifiez les deux.
 
 La **langue par défaut est le néerlandais** (`lang: Lang = 'nl'` dans
 `app.component.ts`). Le choix du visiteur est mémorisé dans le navigateur.
-L'ordre des boutons NL / FR / EN est défini par `LANGS` dans `content.ts`.
+L'ordre des boutons NL / EN est défini par `LANGS` dans `content.ts`.
 
 Les données non traduites (couleurs des cartes, icônes SVG, teintes du
 nuancier) sont dans `app.component.ts` (`services`, `steps`, `swatchColors`).
@@ -84,7 +84,7 @@ Mêmes points que la version statique (voir `../README.md`) :
 
 - Angular **15.2.10**, composant **standalone** + `bootstrapApplication`.
 - `FormsModule` (`ngModel`) pour le formulaire.
-- `Title` / `Meta` mis à jour à chaque changement de langue.
+- `Title` / `Meta` (NL / EN) mis à jour à chaque changement de langue.
 - Fond animé en CSS pur (`@keyframes`), **désactivé** si
   `prefers-reduced-motion`. Parallaxe souris throttlé via `requestAnimationFrame`.
 - Révélation au scroll via `IntersectionObserver`.
